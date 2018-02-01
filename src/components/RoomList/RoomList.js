@@ -23,12 +23,14 @@ class RoomList extends Component {
   render() {
     console.log(this.state.rooms.map( (value) => value.name ));
     let formatted =  this.state.rooms.map( (value) => <li> {value.name} </li> ); 
-      return (
-        <ul>
+    return (
+      <div className="navbar">
+        <ul className="navbar nav">
           {formatted}
         </ul>
+      </div>
 
-      )
+    )
   }
 }
 

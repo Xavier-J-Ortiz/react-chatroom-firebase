@@ -22,6 +22,14 @@
   font-size: large;
 }
 
+.navbar-fixed-left {
+  width: 140px;
+  position: fixed;
+  border-radius: 0;
+  height: 100%;
+  margin: 0 0 0 -15px;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
