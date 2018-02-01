@@ -35,14 +35,14 @@ class RoomList extends Component {
 
   render() {
     //console.log(this.state.rooms.map( (value) => value.name ));
-    let formatted =  this.state.rooms.map( (value) => <li> {value.name} </li> ); 
+    let formatted =  this.state.rooms.map( (value, index) => <li key={index}> {value.name} </li> ); 
     return (
       <div className="navbar">
         <ul className="navbar nav">
           {formatted}
         </ul>
         <form onSubmit={ (e) => this.createNewRoom(e) }>
-          <input type="text" value={ this.state.new_room } onChange={ (e) => this.detectChange(e) } />
+          <input type="text" value={ this.state.new_room || "" } onChange={ (e) => this.detectChange(e) } />
           <input type="submit" value="Create New Room" />
         </form>
       </div>
