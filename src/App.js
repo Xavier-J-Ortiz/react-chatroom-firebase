@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import * as firebase from 'firebase';
+
+var config = {
+  apiKey: "AIzaSyC6QH2Torq9EviDljQ5m9DKxYjP3mE_NCs",
+  authDomain: "react-chatroom-database.firebaseapp.com",
+  databaseURL: "https://react-chatroom-database.firebaseio.com",
+  projectId: "react-chatroom-database",
+  storageBucket: "react-chatroom-database.appspot.com",
+  messagingSenderId: "747996608929"
+};
+
+firebase.initializeApp(config);
 
 class App extends Component {
   render() {
