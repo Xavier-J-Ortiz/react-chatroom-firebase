@@ -11,6 +11,7 @@ class MessageList extends Component {
   }
 
   componentDidMount() {
+
     var query = this.messageRef.orderByChild('roomId').equalTo(this.state.currentRoom);
     query.on('child_added', snapshot => {
       const message = snapshot.val();
@@ -28,7 +29,10 @@ class MessageList extends Component {
       currentRoom: nextProp.currentRoom,
       messages: []
     });
-    this.state.query.off('child_added');
+
+    if(this.state.query) {
+      this.state.query.off('child_added');
+    }
 
     var query = this.messageRef.orderByChild('roomId').equalTo(nextProp.currentRoom);
     query.on('child_added', snapshot => {
@@ -41,15 +45,6 @@ class MessageList extends Component {
       })
     });
 
-    this.messageRef.orderByChild('roomId').equalTo(this.state.currentRoom).on('child_added', snapshot => {
-      const message = snapshot.val();
-      message.key = snapshot.key;
-      this.setState({
-        messages: this.state.messages.concat(message),
-        new_message: ''
-      })
-    });
-
   }
 
   render() {
@@ -58,7 +53,7 @@ class MessageList extends Component {
     let formatted = this.state.messages.map( (value, index) => <li key={index}> {value.name}  :  {value.content} </li>)
     return (
       <ul>
-        {formatted}
+        {this.state.currentRoom === '' ? <h2>Please click on a room in list to view messages</h2> : formatted}
       </ul>
     )
   }

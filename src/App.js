@@ -19,31 +19,27 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentRoom: "-L4TJyuu_X9BeBUdfIVq"
+      //currentRoom: "-L4TJyuu_X9BeBUdfIVq"
+      currentRoom: ""
     }
   }
 
   currentRoomCallback = (roomListCurrentRoom) => {
     //console.log("collected from RoomList Component: " + roomListCurrentRoom);
-    //console.log("collected from currentRoom before change: " + this.state.currentRoom);
     this.setState({currentRoom: roomListCurrentRoom});
     //console.log("collected from currentRoom after change: " + this.state.currentRoom);
   };
 
   render() {
     return (
-      <div className="App row">
-        <div className="navbar navbar-default navbar-fixed-left col-md-3">
-          <div className="navbar-header container-fluid">
+      <div className="App">
+        <div className="navbar navbar-default navbar-fixed-left">
+          <div className="navbar-header">
             <p>Chat Rooms</p>
           </div>
-          <div className="container-fluid">
-            <RoomList firebase={firebase} callbackCurrentRoom={this.currentRoomCallback}/>
-          </div>
+          <RoomList firebase={firebase} callbackCurrentRoom={this.currentRoomCallback}/>
         </div>
-        <div className="container-fluid">
-          <MessageList firebase={firebase} currentRoom={this.state.currentRoom}/>
-        </div>
+        <MessageList firebase={firebase} currentRoom={this.state.currentRoom}/>
       </div>
     );
   }

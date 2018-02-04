@@ -20,6 +20,7 @@ class RoomList extends Component {
         currentRoom: ''
       });
     });
+
   }
 
   createNewRoom(e) {
@@ -34,23 +35,19 @@ class RoomList extends Component {
 
   clickRoom(roomName) {
     this.setState({ currentRoom: roomName });
-    this.props.callbackCurrentRoom(this.state.currentRoom);
+    this.props.callbackCurrentRoom(roomName);
   }
 
   render() {
-    //console.log(this.state.rooms)
-    let formatted =  this.state.rooms.map( (value, index) => <li key={index} onClick={() => this.clickRoom(value.key)}> {value.name} </li> ); 
     return (
-      <div className="row">
-        <div className="navbar">
-          <ul className="navbar nav">
-            {formatted}
-          </ul>
-          <form onSubmit={ (e) => this.createNewRoom(e) }>
-            <input type="text" value={ this.state.new_room || "" } onChange={ (e) => this.detectChange(e) } />
-            <input type="submit" value="Create New Room" />
-          </form>
-        </div>
+      <div className="navbar">
+        <ul className="navbar nav">
+          { this.state.rooms.map( (val, index) => <li key={index} onClick={() => this.clickRoom(val.key)}> {val.name} </li> ) }
+        </ul>
+        <form onSubmit={ (e) => this.createNewRoom(e) }>
+          <input type="text" value={ this.state.new_room || "" } onChange={ (e) => this.detectChange(e) } />
+          <input type="submit" value="Create New Room" />
+        </form>
       </div>
     )
   }
