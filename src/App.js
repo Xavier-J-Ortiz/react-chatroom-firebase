@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import RoomList from './components/RoomList/RoomList.js'
+import MessageList from './components/MessageList/MessageList.js'
 import * as firebase from 'firebase';
 
 var config = {
@@ -15,18 +16,33 @@ var config = {
 firebase.initializeApp(config);
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentRoom: "-L4TJyuu_X9BeBUdfIVq"
+    }
+  }
+
+  currentRoomCallback = (roomListCurrentRoom) => {
+    //console.log("collected from RoomList Component: " + roomListCurrentRoom);
+    //console.log("collected from currentRoom before change: " + this.state.currentRoom);
+    this.setState({currentRoom: roomListCurrentRoom});
+    //console.log("collected from currentRoom after change: " + this.state.currentRoom);
+  };
+
   render() {
     return (
-      <div className="App">
-        <div className="navbar navbar-default navbar-fixed-left">
-          <div className="container">
-            <div className="navbar-header">
-              <p>Chat Rooms</p>
-            </div>
+      <div className="App row">
+        <div className="navbar navbar-default navbar-fixed-left col-md-3">
+          <div className="navbar-header container-fluid">
+            <p>Chat Rooms</p>
           </div>
-          <div>
-            <RoomList firebase={firebase} />
+          <div className="container-fluid">
+            <RoomList firebase={firebase} callbackCurrentRoom={this.currentRoomCallback}/>
           </div>
+        </div>
+        <div className="container-fluid">
+          <MessageList firebase={firebase} currentRoom={this.state.currentRoom}/>
         </div>
       </div>
     );

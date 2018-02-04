@@ -16,7 +16,8 @@ class RoomList extends Component {
       room.key = snapshot.key;
       this.setState({ 
         rooms: this.state.rooms.concat( room ),
-        new_room: ''
+        new_room: '',
+        currentRoom: ''
       });
     });
   }
@@ -28,25 +29,29 @@ class RoomList extends Component {
 
   detectChange(e) {
     this.setState( { new_room: e.target.value } );
-    //console.log(this.state.new_room);
-    
     this.newRoomRef = this.state.new_room;
   }
 
-  render() {
-    //console.log(this.state.rooms.map( (value) => value.name ));
-    let formatted =  this.state.rooms.map( (value, index) => <li key={index}> {value.name} </li> ); 
-    return (
-      <div className="navbar">
-        <ul className="navbar nav">
-          {formatted}
-        </ul>
-        <form onSubmit={ (e) => this.createNewRoom(e) }>
-          <input type="text" value={ this.state.new_room || "" } onChange={ (e) => this.detectChange(e) } />
-          <input type="submit" value="Create New Room" />
-        </form>
-      </div>
+  clickRoom(roomName) {
+    this.setState({ currentRoom: roomName });
+    this.props.callbackCurrentRoom(this.state.currentRoom);
+  }
 
+  render() {
+    //console.log(this.state.rooms)
+    let formatted =  this.state.rooms.map( (value, index) => <li key={index} onClick={() => this.clickRoom(value.key)}> {value.name} </li> ); 
+    return (
+      <div className="row">
+        <div className="navbar">
+          <ul className="navbar nav">
+            {formatted}
+          </ul>
+          <form onSubmit={ (e) => this.createNewRoom(e) }>
+            <input type="text" value={ this.state.new_room || "" } onChange={ (e) => this.detectChange(e) } />
+            <input type="submit" value="Create New Room" />
+          </form>
+        </div>
+      </div>
     )
   }
 }
