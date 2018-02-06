@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import RoomList from './components/RoomList/RoomList.js'
 import MessageList from './components/MessageList/MessageList.js'
-import * as firebase from 'firebase';
+import User from'./components/User/User.js'
+import * as firebase from 'firebase'
 
 var config = {
   apiKey: "AIzaSyC6QH2Torq9EviDljQ5m9DKxYjP3mE_NCs",
@@ -39,6 +40,7 @@ class App extends Component {
           </div>
           <RoomList firebase={firebase} callbackCurrentRoom={this.currentRoomCallback}/>
         </div>
+        <User firebase={firebase}/>
         <MessageList firebase={firebase} currentRoom={this.state.currentRoom}/>
       </div>
     );
