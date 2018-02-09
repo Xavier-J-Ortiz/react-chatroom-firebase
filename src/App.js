@@ -35,10 +35,8 @@ class App extends Component {
     return (
       <div className="App">
         <div className="navbar navbar-default navbar-fixed-left">
-          <div className="navbar-header">
-            <p>Chat Rooms</p>
-          </div>
-          <RoomList firebase={firebase} callbackCurrentRoom={this.currentRoomCallback}/>
+          <div className="nav-contents container-fluid">
+            <RoomList firebase={firebase} callbackCurrentRoom={this.currentRoomCallback}/> </div>
         </div>
         <User firebase={firebase}/>
         <MessageList firebase={firebase} currentRoom={this.state.currentRoom}/>
