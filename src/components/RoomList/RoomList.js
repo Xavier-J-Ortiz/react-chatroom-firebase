@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import './RoomList.css';
 
 class RoomList extends Component {
 
   constructor(props) {
     super(props);
+    this.newRoomRef = ''
     this.roomsRef = this.props.firebase.database().ref('rooms');
     this.state = {
       rooms: []
@@ -20,33 +22,39 @@ class RoomList extends Component {
         currentRoom: ''
       });
     });
-
   }
 
   createNewRoom(e) {
     e.preventDefault();
+    //console.log('new room in create room: ' + this.state.new_room)
     this.roomsRef.push({ name: this.newRoomRef });
   }
 
   detectChange(e) {
-    this.setState( { new_room: e.target.value } );
-    this.newRoomRef = this.state.new_room;
+    this.newRoomRef = e.target.value;
+    this.setState( { new_room: this.newRoomRef } );
+    //console.log('State in detect change: ' + this.state.new_room);
+    //console.log('new Room Ref in detect change: ' + this.newRoomRef);
   }
 
   clickRoom(roomName) {
     this.setState({ currentRoom: roomName });
     this.props.callbackCurrentRoom(roomName);
+
   }
 
   render() {
     return (
-      <div className="navbar">
-        <ul className="navbar nav">
+      <div className="nav-contents">
+        <div className="navbar-header">
+          <a className="navbar-brand"> Chat Rooms </a>
+        </div>
+        <ul className="navbar-nav nav">
           { this.state.rooms.map( (val, index) => <li key={index} onClick={() => this.clickRoom(val.key)}> {val.name} </li> ) }
         </ul>
         <form onSubmit={ (e) => this.createNewRoom(e) }>
-          <input type="text" value={ this.state.new_room || "" } onChange={ (e) => this.detectChange(e) } />
-          <input type="submit" value="Create New Room" />
+          <input type="text" class="submit-text" value={ this.state.new_room || "" } onChange={ (e) => this.detectChange(e) } />
+          <input type="submit" class="submit-button" value="Create New Room" />
         </form>
       </div>
     )

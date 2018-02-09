@@ -36,15 +36,19 @@ class User extends Component {
     if (this.state.userName) { 
       return (
         <div>
-          <h3>Hello { this.state.userName } </h3>
-          <button type='button' className='btn btn-danger' onClick={() => this.signOutClick()}> Sign Out </button>
+          <span> 
+            <h3>Hello { this.state.userName } </h3>
+            <button type='button' className='btn btn-danger' onClick={() => this.signOutClick()}> Sign Out </button>
+          </span> 
         </div>
       )
     } else {
       return (
         <div>
-          <h3>Hello Guest!</h3>
-          <button type='button' className='btn btn-default'onClick={() => this.newUserClick()}> User Sign In </button>
+          <span> 
+            <h3>Hello Guest!</h3>
+            <button type='button' className='btn btn-default'onClick={() => this.newUserClick()}> User Sign In </button>
+          </span> 
         </div>
       )
     }
