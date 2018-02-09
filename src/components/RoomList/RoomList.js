@@ -53,8 +53,8 @@ class RoomList extends Component {
           { this.state.rooms.map( (val, index) => <li key={index} onClick={() => this.clickRoom(val.key)}> {val.name} </li> ) }
         </ul>
         <form onSubmit={ (e) => this.createNewRoom(e) }>
-          <input type="text" class="submit-text" value={ this.state.new_room || "" } onChange={ (e) => this.detectChange(e) } />
-          <input type="submit" class="submit-button" value="Create New Room" />
+          <input type="text" className="submit-text" value={ this.state.new_room || "" } onChange={ (e) => this.detectChange(e) } />
+          <input type="submit" className="submit-button" value="Create New Room" />
         </form>
       </div>
     )
