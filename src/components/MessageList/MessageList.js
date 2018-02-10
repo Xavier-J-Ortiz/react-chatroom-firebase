@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './MessageList.css';
+import MessageUpdate from '../MessageUpdate/MessageUpdate.js'
 
 class MessageList extends Component {
   constructor(props) {
@@ -48,23 +49,24 @@ class MessageList extends Component {
 
   }
 
+  callbackCreateNewMessage = (newMessage) => { 
+    //console.log("newMessage" + newMessage);
+    this.messageRef.push({ 
+      content: newMessage,
+      name: "Guest",
+      roomId: "2",
+      sentAt: this.props.firebase.database.ServerValue.TIMESTAMP
+    });
+  };
   render() {
-    //console.log(this.state.currentRoom);
-    //console.log(this.state.messages.map( (value, index) => "index: " + index + " message: " + value.content ));
-
     let formatted = this.state.messages.map( (value, index) =>
       <div key={index} className={ "offset-md-2 col-md-10" + (index % 2 ? " message-lightgrey" : "") }>
         <p key={index}> <b> {value.name}  : </b>  {value.content} </p>
       </div>
     );
 
-    let submitMessageForm = 
-        <form onSubmit={console.log("whenever")}>
-          <input type="text" className="submit-text offset-md-2 col-md-9" value={console.log("whenever")} onChange={console.log("whenever")} />
-          <input type="submit" className="submit-button" value="Send" />
-        </form>;
+    let submitMessageForm = <MessageUpdate callbackCreateNewMessage={this.callbackCreateNewMessage} messages={ this.state.messages } currentRoom={ this.state.currentRoom }/>;
     formatted.push(submitMessageForm);
-    
     return (
       <div className="row-fluid">
         {this.state.currentRoom === '' ? <h2 className="offset-md-3 col-md-6 announcement">Please click on a room in list to view messages</h2> : formatted }

@@ -26,15 +26,12 @@ class RoomList extends Component {
 
   createNewRoom(e) {
     e.preventDefault();
-    //console.log('new room in create room: ' + this.state.new_room)
     this.roomsRef.push({ name: this.newRoomRef });
   }
 
   detectChange(e) {
     this.newRoomRef = e.target.value;
     this.setState( { new_room: this.newRoomRef } );
-    //console.log('State in detect change: ' + this.state.new_room);
-    //console.log('new Room Ref in detect change: ' + this.newRoomRef);
   }
 
   clickRoom(roomName) {
