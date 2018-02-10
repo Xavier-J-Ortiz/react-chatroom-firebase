@@ -56,15 +56,22 @@ class MessageList extends Component {
       <div key={index} className={ "offset-md-2 col-md-10" + (index % 2 ? " message-lightgrey" : "") }>
         <p key={index}> <b> {value.name}  : </b>  {value.content} </p>
       </div>
-    )
+    );
+
+    let submitMessageForm = 
+        <form onSubmit={console.log("whenever")}>
+          <input type="text" className="submit-text offset-md-2 col-md-9" value={console.log("whenever")} onChange={console.log("whenever")} />
+          <input type="submit" className="submit-button" value="Send" />
+        </form>;
+    formatted.push(submitMessageForm);
+    
     return (
-      <div className="row">
-        {this.state.currentRoom === '' ? <h2 className="offset-md-3 col-md-6 announcement">Please click on a room in list to view messages</h2> : formatted}
+      <div className="row-fluid">
+        {this.state.currentRoom === '' ? <h2 className="offset-md-3 col-md-6 announcement">Please click on a room in list to view messages</h2> : formatted }
       </div>
     )
 
   }
-
 }
 
 export default MessageList;
