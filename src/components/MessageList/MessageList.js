@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './MessageList.css';
 
 class MessageList extends Component {
   constructor(props) {
@@ -50,12 +51,20 @@ class MessageList extends Component {
   render() {
     //console.log(this.state.currentRoom);
     //console.log(this.state.messages.map( (value, index) => "index: " + index + " message: " + value.content ));
-    let formatted = this.state.messages.map( (value, index) => <li key={index}> {value.name}  :  {value.content} </li>)
+
+    let formatted = this.state.messages.map( (value, index) =>
+        <div className="">
+          <div className={ index % 2 ? " message-lightgrey" : "" }>
+            <li key={index}> {value.name}  :  {value.content} </li>
+          </div>
+        </div>
+    )
     return (
       <ul>
         {this.state.currentRoom === '' ? <h2>Please click on a room in list to view messages</h2> : formatted}
       </ul>
     )
+
   }
 
 }

@@ -35,11 +35,13 @@ class App extends Component {
     return (
       <div className="App">
         <div className="navbar navbar-default navbar-fixed-left">
-          <div className="nav-contents container-fluid">
+          <div className="nav-contents container-fluid room-section">
             <RoomList firebase={firebase} callbackCurrentRoom={this.currentRoomCallback}/> </div>
         </div>
+        <div className="container-fluid">
         <User firebase={firebase}/>
-        <MessageList firebase={firebase} currentRoom={this.state.currentRoom}/>
+          <MessageList firebase={firebase} currentRoom={this.state.currentRoom}/>
+        </div>
       </div>
     );
   }

@@ -50,7 +50,7 @@ class RoomList extends Component {
           <a className="navbar-brand"> Chat Rooms </a>
         </div>
         <ul className="navbar-nav nav">
-          { this.state.rooms.map( (val, index) => <li key={index} onClick={() => this.clickRoom(val.key)}> {val.name} </li> ) }
+          { this.state.rooms.map( (val, index) => <li className="room-li" key={index} onClick={() => this.clickRoom(val.key)}> {val.name} </li> ) }
         </ul>
         <form onSubmit={ (e) => this.createNewRoom(e) }>
           <input type="text" className="submit-text" value={ this.state.new_room || "" } onChange={ (e) => this.detectChange(e) } />
