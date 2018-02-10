@@ -54,7 +54,7 @@ class MessageList extends Component {
 
     let formatted = this.state.messages.map( (value, index) =>
       <div key={index} className={ "offset-md-2 col-md-10" + (index % 2 ? " message-lightgrey" : "") }>
-        <p key={index}> {value.name}  :  {value.content} </p>
+        <p key={index}> <b> {value.name}  : </b>  {value.content} </p>
       </div>
     )
     return (
