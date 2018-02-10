@@ -8,7 +8,8 @@ class MessageList extends Component {
     this.messageRef = this.props.firebase.database().ref('messages');
     this.state = {
       messages: [],
-      currentRoom: this.props.currentRoom
+      currentRoom: this.props.currentRoom,
+      currentUser: this.props.currentUser
     };
   }
 
@@ -29,7 +30,8 @@ class MessageList extends Component {
   componentWillReceiveProps(nextProp) {
     this.setState({ 
       currentRoom: nextProp.currentRoom,
-      messages: []
+      messages: [],
+      currentUser: nextProp.currentUser
     });
 
     if(this.state.query) {
@@ -50,11 +52,10 @@ class MessageList extends Component {
   }
 
   callbackCreateNewMessage = (newMessage) => { 
-    //console.log("newMessage" + newMessage);
     this.messageRef.push({ 
       content: newMessage,
-      name: "Guest",
-      roomId: "2",
+      name: this.state.currentUser ? this.state.currentUser : "Guest",
+      roomId: this.state.currentRoom,
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP
     });
   };

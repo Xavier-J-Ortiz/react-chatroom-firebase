@@ -7,7 +7,7 @@ class User extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      userName: this.props.currentUser
     };
   }
 
@@ -15,9 +15,8 @@ class User extends Component {
     const provider = new this.props.firebase.auth.GoogleAuthProvider();
     provider.addScope('https://www.googleapis.com/auth/plus.login');
     this.props.firebase.auth().signInWithPopup( provider  ).then((authData) => {
-      //console.log(authData);
-      //console.log(authData.user.displayName);
       this.setState( { userName: authData.user.displayName } );
+      this.props.currentUserCallback(this.state.userName);
     }).catch(function(error) {
       console.log(error);
     });
@@ -27,12 +26,16 @@ class User extends Component {
     this.props.firebase.auth().signOut().then(() => {
       console.log('you have been successfully signed out!');
       this.setState( { userName: null } );
+      this.props.currentUserCallback(this.state.userName);
     }, function(error) {
       console.log(error);
     });
   }
 
+  componentWillMount() {
+  }
   render() {
+    console.log("User Render userName: " + this.state.userName)
     if (this.state.userName) { 
       return (
         <div className="announcement">

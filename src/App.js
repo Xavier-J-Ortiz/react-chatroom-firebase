@@ -21,7 +21,8 @@ class App extends Component {
     super(props);
     this.state = {
       //currentRoom: "-L4TJyuu_X9BeBUdfIVq"
-      currentRoom: ""
+      currentRoom: "",
+      currentUser: null
     }
   }
 
@@ -29,6 +30,11 @@ class App extends Component {
     //console.log("collected from RoomList Component: " + roomListCurrentRoom);
     this.setState({currentRoom: roomListCurrentRoom});
     //console.log("collected from currentRoom after change: " + this.state.currentRoom);
+  };
+
+  currentUserCallback = (userCurrentUser) => {
+    this.setState({ currentUser: userCurrentUser });
+    console.log("App CurrentUserCallback: " + this.state.currentUser);
   };
 
   render() {
@@ -41,8 +47,8 @@ class App extends Component {
         </div>
         </div>
         <div className="container-fluid">
-        <User firebase={firebase}/>
-          <MessageList firebase={firebase} currentRoom={this.state.currentRoom}/>
+        <User currentUserCallback={ this.currentUserCallback } firebase={firebase} currentUser={ this.state.currentUser }/>
+          <MessageList firebase={firebase} currentRoom={this.state.currentRoom} currentUser={ this.state.currentUser }/>
         </div>
       </div>
     );
