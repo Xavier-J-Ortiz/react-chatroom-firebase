@@ -35,7 +35,7 @@ class User extends Component {
   render() {
     if (this.state.userName) { 
       return (
-        <div>
+        <div className="announcement">
           <span> 
             <h3>Hello { this.state.userName } </h3>
             <button type='button' className='btn btn-danger' onClick={() => this.signOutClick()}> Sign Out </button>
@@ -44,7 +44,7 @@ class User extends Component {
       )
     } else {
       return (
-        <div>
+        <div className="announcement">
           <span> 
             <h3>Hello Guest!</h3>
             <button type='button' className='btn btn-default'onClick={() => this.newUserClick()}> User Sign In </button>

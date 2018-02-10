@@ -33,10 +33,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="navbar navbar-default navbar-fixed-left">
-          <div className="nav-contents container-fluid room-section">
+      <div className="App container-fluid">
+        <div className="row">
+        <div className="navbar navbar-default navbar-fixed-left col-md-2">
+          <div className="nav-contents room-section">
             <RoomList firebase={firebase} callbackCurrentRoom={this.currentRoomCallback}/> </div>
+        </div>
         </div>
         <div className="container-fluid">
         <User firebase={firebase}/>

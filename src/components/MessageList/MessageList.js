@@ -53,16 +53,14 @@ class MessageList extends Component {
     //console.log(this.state.messages.map( (value, index) => "index: " + index + " message: " + value.content ));
 
     let formatted = this.state.messages.map( (value, index) =>
-        <div className="">
-          <div className={ index % 2 ? " message-lightgrey" : "" }>
-            <li key={index}> {value.name}  :  {value.content} </li>
-          </div>
-        </div>
+      <div key={index} className={ "offset-md-2 col-md-10" + (index % 2 ? " message-lightgrey" : "") }>
+        <p key={index}> {value.name}  :  {value.content} </p>
+      </div>
     )
     return (
-      <ul>
-        {this.state.currentRoom === '' ? <h2>Please click on a room in list to view messages</h2> : formatted}
-      </ul>
+      <div className="row">
+        {this.state.currentRoom === '' ? <h2 className="offset-md-3 col-md-6 announcement">Please click on a room in list to view messages</h2> : formatted}
+      </div>
     )
 
   }
