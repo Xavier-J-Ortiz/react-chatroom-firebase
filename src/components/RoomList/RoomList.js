@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './RoomList.css';
 
 class RoomList extends Component {
-
   constructor(props) {
     super(props);
     this.newRoomRef = ''
@@ -37,7 +36,6 @@ class RoomList extends Component {
   clickRoom(roomId, roomName) {
     this.setState({ currentRoom: roomId, currentRoomName: roomName });
     this.props.callbackCurrentRoom(roomId, roomName);
-
   }
 
   render() {

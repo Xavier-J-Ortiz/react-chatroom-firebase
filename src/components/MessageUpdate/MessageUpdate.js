@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import './MessageUpdate.css'
 
 class MessageUpdate extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -10,9 +8,8 @@ class MessageUpdate extends Component {
       currentRoom: this.props.currentRoom,
       newMessage: ""
     };
-
-
   }
+
   componentWillReceiveProps(nextProp) {
     this.setState({
       messages: this.props.messages,
@@ -42,7 +39,6 @@ class MessageUpdate extends Component {
         </div>
       </form>
     )
-
   }
 }
 
