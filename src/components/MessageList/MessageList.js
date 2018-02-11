@@ -9,6 +9,7 @@ class MessageList extends Component {
     this.state = {
       messages: [],
       currentRoom: this.props.currentRoom,
+      currentRoomName: this.props.currentRoomName,
       currentUser: this.props.currentUser
     };
   }
@@ -30,6 +31,7 @@ class MessageList extends Component {
   componentWillReceiveProps(nextProp) {
     this.setState({ 
       currentRoom: nextProp.currentRoom,
+      currentRoomName: nextProp.currentRoomName,
       messages: [],
       currentUser: nextProp.currentUser
     });
@@ -48,7 +50,6 @@ class MessageList extends Component {
         query: query
       })
     });
-
   }
 
   callbackCreateNewMessage = (newMessage) => { 
@@ -66,7 +67,9 @@ class MessageList extends Component {
       </div>
     );
 
+    let roomAnnouncement = <h3 className="offset-md-2 col-md-8 announcement"> You are currently viewing messages from {this.state.currentRoomName} </h3>;
     let submitMessageForm = <MessageUpdate callbackCreateNewMessage={this.callbackCreateNewMessage} messages={ this.state.messages } currentRoom={ this.state.currentRoom }/>;
+    formatted.unshift(roomAnnouncement);
     formatted.push(submitMessageForm);
     return (
       <div className="row-fluid">

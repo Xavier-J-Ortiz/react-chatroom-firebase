@@ -34,9 +34,9 @@ class RoomList extends Component {
     this.setState( { new_room: this.newRoomRef } );
   }
 
-  clickRoom(roomName) {
-    this.setState({ currentRoom: roomName });
-    this.props.callbackCurrentRoom(roomName);
+  clickRoom(roomId, roomName) {
+    this.setState({ currentRoom: roomId, currentRoomName: roomName });
+    this.props.callbackCurrentRoom(roomId, roomName);
 
   }
 
@@ -47,7 +47,7 @@ class RoomList extends Component {
           <a className="navbar-brand"> Chat Rooms </a>
         </div>
         <ul className="navbar-nav nav">
-          { this.state.rooms.map( (val, index) => <li className="room-li" key={index} onClick={() => this.clickRoom(val.key)}> {val.name} </li> ) }
+          { this.state.rooms.map( (val, index) => <li className="room-li" key={index} onClick={() => this.clickRoom(val.key, val.name)}> {val.name} </li> ) }
         </ul>
         <form onSubmit={ (e) => this.createNewRoom(e) }>
           <input type="text" className="submit-text" value={ this.state.new_room || "" } onChange={ (e) => this.detectChange(e) } />

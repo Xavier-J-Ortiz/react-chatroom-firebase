@@ -20,16 +20,17 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      //currentRoom: "-L4TJyuu_X9BeBUdfIVq"
       currentRoom: "",
-      currentUser: null
+      currentUser: null,
+      currentRoomName: ""
     }
   }
 
-  currentRoomCallback = (roomListCurrentRoom) => {
-    //console.log("collected from RoomList Component: " + roomListCurrentRoom);
-    this.setState({currentRoom: roomListCurrentRoom});
-    //console.log("collected from currentRoom after change: " + this.state.currentRoom);
+  currentRoomCallback = (roomListCurrentRoom, roomListCurrentRoomName) => {
+    this.setState({
+      currentRoom: roomListCurrentRoom,
+      currentRoomName: roomListCurrentRoomName
+    });
   };
 
   currentUserCallback = (userCurrentUser) => {
@@ -48,7 +49,7 @@ class App extends Component {
         </div>
         <div className="container-fluid">
         <User currentUserCallback={ this.currentUserCallback } firebase={firebase} currentUser={ this.state.currentUser }/>
-          <MessageList firebase={firebase} currentRoom={this.state.currentRoom} currentUser={ this.state.currentUser }/>
+          <MessageList firebase={firebase} currentRoomName={ this.state.currentRoomName } currentRoom={this.state.currentRoom} currentUser={ this.state.currentUser }/>
         </div>
       </div>
     );
