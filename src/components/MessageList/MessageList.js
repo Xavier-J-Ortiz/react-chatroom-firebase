@@ -69,7 +69,10 @@ class MessageList extends Component {
       });
 
       this.setState({ 
-        messages: []
+        currentRoom: nextProp.currentRoom,
+        currentRoomName: nextProp.currentRoomName,
+        messages: [],
+        query: query
       });
 
     } else if (this.state.currentUser !== nextProp.currentUser) {
