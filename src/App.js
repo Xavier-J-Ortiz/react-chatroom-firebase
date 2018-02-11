@@ -35,7 +35,6 @@ class App extends Component {
 
   currentUserCallback = (userCurrentUser) => {
     this.setState({ currentUser: userCurrentUser });
-    console.log("App CurrentUserCallback: " + this.state.currentUser);
   };
 
   render() {
@@ -54,7 +53,6 @@ class App extends Component {
           <MessageList firebase={firebase} currentRoomName={ this.state.currentRoomName } currentRoom={this.state.currentRoom} currentUser={ this.state.currentUser }/>
         </div>
       </div>
-
     );
   }
 }
