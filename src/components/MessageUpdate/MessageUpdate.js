@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './MessageUpdate.css'
 
 class MessageUpdate extends Component {
 
@@ -29,10 +30,17 @@ class MessageUpdate extends Component {
   }
 
   render() {
-    return(    <form onSubmit={ (e) => this.createNewMessage(e) }>
-      <input type="text" className="submit-text offset-md-2 col-md-9" value={ this.state.newMessage || "" } onChange={ (e) => this.detectChange(e) } />
-      <input type="submit" className="submit-button" value="Send" />
-    </form>
+    return(    
+      <form onSubmit={ (e) => this.createNewMessage(e) }>
+        <div className="row">
+          <div className="offset-md-2 col-md-8">
+            <input type="text" className="submit-text col-md-12" value={ this.state.newMessage || "" } onChange={ (e) => this.detectChange(e) } />
+          </div>
+          <div className="col-md-2">
+            <input type="submit" className="submit-button offset-md-1 col-md-9" value="Send" />
+          </div>
+        </div>
+      </form>
     )
 
   }

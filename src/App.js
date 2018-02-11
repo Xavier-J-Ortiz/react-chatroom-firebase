@@ -43,7 +43,7 @@ class App extends Component {
       <div className="App container-fluid">
         <div className="row">
         <div className="navbar navbar-default navbar-fixed-left col-md-2">
-          <div className="nav-contents room-section">
+          <div className="nav-contents room-section fixed-top">
             <RoomList firebase={firebase} callbackCurrentRoom={this.currentRoomCallback}/> </div>
         </div>
         </div>

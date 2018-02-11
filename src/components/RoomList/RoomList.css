@@ -1,3 +1,11 @@
 .room-li {
   float: none;  /* Cancel default li float: left */
 }
+
+.submit-text {
+  border-radius: 5px;
+}
+
+.submit-button {
+  border-radius: 5px;
+}

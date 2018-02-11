@@ -20,6 +20,7 @@ class MessageList extends Component {
     query.on('child_added', snapshot => {
       const message = snapshot.val();
       message.key = snapshot.key;
+
       this.setState({
         messages: this.state.messages.concat(message),
         new_message: '',
@@ -68,8 +69,11 @@ class MessageList extends Component {
     );
 
     let roomAnnouncement = <h3 className="offset-md-2 col-md-8 announcement"> You are currently viewing messages from {this.state.currentRoomName} </h3>;
-    let submitMessageForm = <MessageUpdate callbackCreateNewMessage={this.callbackCreateNewMessage} messages={ this.state.messages } currentRoom={ this.state.currentRoom }/>;
-    formatted.unshift(roomAnnouncement);
+    let submitMessageForm = 
+      <div className="fixed-bottom">
+        <MessageUpdate callbackCreateNewMessage={this.callbackCreateNewMessage} messages={ this.state.messages } currentRoom={ this.state.currentRoom }/>
+      </div>;
+      formatted.unshift(roomAnnouncement);
     formatted.push(submitMessageForm);
     return (
       <div className="row-fluid">
