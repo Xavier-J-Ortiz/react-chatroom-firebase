@@ -40,18 +40,21 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App container-fluid">
+      <div className="container-fluid">
         <div className="row">
-        <div className="navbar navbar-default navbar-fixed-left col-md-2">
-          <div className="nav-contents room-section fixed-top">
-            <RoomList firebase={firebase} callbackCurrentRoom={this.currentRoomCallback}/> </div>
-        </div>
+          <div className="col-md-2 navbar navbar-default navbar-fixed-left">
+            <div className="nav-contents room-section fixed-top col-md-2">
+              <div className="row">
+                <RoomList firebase={firebase} callbackCurrentRoom={this.currentRoomCallback}/> </div>
+            </div>
+          </div>
         </div>
         <div className="container-fluid">
-        <User currentUserCallback={ this.currentUserCallback } firebase={firebase} currentUser={ this.state.currentUser }/>
+          <User currentUserCallback={ this.currentUserCallback } firebase={firebase} currentUser={ this.state.currentUser }/>
           <MessageList firebase={firebase} currentRoomName={ this.state.currentRoomName } currentRoom={this.state.currentRoom} currentUser={ this.state.currentUser }/>
         </div>
       </div>
+
     );
   }
 }

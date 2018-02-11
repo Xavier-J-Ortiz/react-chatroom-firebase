@@ -53,6 +53,23 @@ class MessageList extends Component {
     });
   }
 
+  componentDidMount() {
+    if (this.messagesEnd) {
+      this.scrollToBottom();
+    }
+
+  }
+
+  componentDidUpdate() {
+    if (this.messagesEnd) {
+      this.scrollToBottom();
+    }
+  }
+
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  }
+
   callbackCreateNewMessage = (newMessage) => { 
     this.messageRef.push({ 
       content: newMessage,
@@ -61,6 +78,7 @@ class MessageList extends Component {
       sentAt: this.props.firebase.database.ServerValue.TIMESTAMP
     });
   };
+  
   render() {
     let formatted = this.state.messages.map( (value, index) =>
       <div key={index} className={ "offset-md-2 col-md-10" + (index % 2 ? " message-lightgrey" : "") }>
@@ -68,12 +86,16 @@ class MessageList extends Component {
       </div>
     );
 
-    let roomAnnouncement = <h3 className="offset-md-2 col-md-8 announcement"> You are currently viewing messages from {this.state.currentRoomName} </h3>;
+    let roomAnnouncement = <h3 className="offset-md-2 col-md-8 announcement"> You are currently viewing messages from <b>{this.state.currentRoomName}</b> </h3>;
+    let findMeDiv = <div className="findMe"
+      ref={(el) => { this.messagesEnd = el; }}>
+    </div>;
     let submitMessageForm = 
       <div className="fixed-bottom">
         <MessageUpdate callbackCreateNewMessage={this.callbackCreateNewMessage} messages={ this.state.messages } currentRoom={ this.state.currentRoom }/>
       </div>;
-      formatted.unshift(roomAnnouncement);
+    formatted.unshift(roomAnnouncement);
+    formatted.push(findMeDiv);
     formatted.push(submitMessageForm);
     return (
       <div className="row-fluid">

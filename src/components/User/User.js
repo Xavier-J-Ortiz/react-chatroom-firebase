@@ -38,21 +38,17 @@ class User extends Component {
     console.log("User Render userName: " + this.state.userName)
     if (this.state.userName) { 
       return (
-        <div className="announcement">
-          <span> 
-            <h3>Hello { this.state.userName } </h3>
-            <button type='button' className='btn btn-danger' onClick={() => this.signOutClick()}> Sign Out </button>
-          </span> 
+          <div className="announcement row">
+            <h3 className="offset-md-2 col-md-8">Hello { this.state.userName } </h3>
+            <button type='button' className='btn btn-danger offset-md-1 col-md-1' onClick={() => this.signOutClick()}> Sign Out </button>
         </div>
       )
     } else {
       return (
-        <div className="announcement">
-          <span> 
-            <h3>Hello Guest!</h3>
-            <button type='button' className='btn btn-default'onClick={() => this.newUserClick()}> User Sign In </button>
-          </span> 
-        </div>
+          <div className="announcement row">
+            <h3 className="offset-md-2 col-md-8">Hello Guest!</h3>
+            <button type='button' className='btn btn-default offset-md-1 col-md-1' onClick={() => this.newUserClick()}> User Sign In </button>
+          </div>
       )
     }
   }
