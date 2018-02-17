@@ -2,6 +2,7 @@
   "name": "react-chatroom-firebase",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://www.xavierjortiz.com/chatroom",
   "dependencies": {
     "eslint": "^4.17.0",
     "firebase": "^4.9.0",

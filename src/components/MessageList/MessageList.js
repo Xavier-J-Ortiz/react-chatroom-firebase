@@ -106,7 +106,9 @@ class MessageList extends Component {
       </div>;
     formatted.unshift(roomAnnouncement);
     formatted.push(findMeDiv);
-    formatted.push(submitMessageForm);
+    if (this.state.currentUser) {
+      formatted.push(submitMessageForm);
+    }
     return (
       <div className="row-fluid">
         {this.state.currentRoom === '' ? <h2 className="offset-md-3 col-md-6 announcement">Please click on a room in list to view messages</h2> : formatted }
